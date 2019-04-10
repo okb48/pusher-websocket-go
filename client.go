@@ -60,10 +60,10 @@ type evBind map[string]chan (interface{})
 type chanbindings map[string]evBind
 
 // New creates a new Pusher client with given Pusher application key
-func New(key string) *Client {
+func New(key,host string) *Client {
 	config := ClientConfig{
 		Scheme: defaultScheme,
-		Host:   defaultHost,
+		Host:   host,
 		Port:   defaultPort,
 		Key:    key,
 	}
