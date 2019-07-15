@@ -44,6 +44,7 @@ func (self *Channel) Bind(event string, callback EventHandler) {
 	go func() {
 		for {
 			data := <-channelEvents
+
 			callback(data)
 		}
 	}()

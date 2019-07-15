@@ -61,9 +61,16 @@ type chanbindings map[string]evBind
 
 // New creates a new Pusher client with given Pusher application key
 func New(key,host string) *Client {
+
+	var h string
+	if host == "" {
+		h = defaultHost
+	}else{
+		h = host
+	}
 	config := ClientConfig{
 		Scheme: defaultScheme,
-		Host:   host,
+		Host:   h,
 		Port:   defaultPort,
 		Key:    key,
 	}
@@ -155,6 +162,7 @@ func (self *Client) runLoop() {
 			}
 
 		case message := <-onMessage:
+
 			event, _ := decode([]byte(message))
 			if Debug {
 				log.Printf("Received: channel=%v event=%v data=%v", event.Channel, event.Name, event.Data)

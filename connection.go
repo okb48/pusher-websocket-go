@@ -170,6 +170,7 @@ func (self *connection) runLoop() {
 			return
 
 		case msg := <-self._onMessage:
+
 			afterActivity()
 
 			if self.config.onMessage != nil {
@@ -179,6 +180,8 @@ func (self *connection) runLoop() {
 			afterActivity()
 
 		case msg := <-self._sendMessage:
+
+
 			if Debug {
 				log.Print("Sending: ", string(msg))
 			}
